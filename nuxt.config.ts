@@ -1,5 +1,12 @@
 import tailwindcss from '@tailwindcss/vite';
 
+console.log('MONGODB_USERNAME:', process.env.MONGODB_USERNAME);
+console.log('MONGODB_PASSWORD:', process.env.MONGODB_PASSWORD);
+console.log('MONGODB_HOST:', process.env.MONGODB_HOST);
+console.log('ENV:', process.env.ENV);
+console.log('NUXT_API_URL:', process.env.NUXT_API_URL);
+console.log('NUXT_APP_ENV:', process.env.NUXT_APP_ENV);
+
 export default defineNuxtConfig({
   compatibilityDate: "2025-05-15",
   devtools: { enabled: true },
