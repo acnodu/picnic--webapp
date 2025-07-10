@@ -45,7 +45,7 @@ class Sessions {
     async sendMFA(channel) {
         this.client.defaults.headers.common['picnic-email'] = this.email;
 
-        const response = await this._post('/user/2fa/generate', channel);
+        const response = await this._post('/user/2fa/generate', { channel });
         if (!response) return null;
 
         return true;

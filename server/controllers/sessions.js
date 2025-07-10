@@ -26,10 +26,10 @@ const mfaVerify = async (event) => {
 };
 
 const mfaGenerate = async (event) => {
-    const body = await readBody(event);
+    const { type } = await readBody(event);
     const Sessions = new SessionsService(event.context.session);
 
-    const response = await Sessions.sendMFA(body);
+    const response = await Sessions.sendMFA(type);
     if (!response) {
         return sendError(
             event,
