@@ -27,12 +27,12 @@ export default defineNuxtPlugin((nuxtApp) => {
             return response.data;
         },
         (error) => {
-            if (error.response?.status === 401) {
+            if (error.response?.status === 401 && window.location.pathname !== '/login') {
                 localStorage.removeItem('token');
                 window.location.replace('/login');
             }
 
-            alert(error.response?.data?.message || 'An error occurred');
+            alert(error.response?.data?.statusMessage || 'An error occurred');
 
             return Promise.reject(error.response);
         }

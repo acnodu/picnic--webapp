@@ -34,7 +34,6 @@
             <CoreContainer class="flex-1 p-4">
                 <div class="max-w-4xl mx-auto flex justify-center">
                     <button
-                        :disabled="underDiscountApplication || isLoading || cart.length === 0"
                         type="button"
                         class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
                         @click="applyDiscount"
@@ -53,6 +52,7 @@
 
 <script setup>
 import { onMounted, onBeforeUnmount } from 'vue';
+import { jwtDecode } from 'jwt-decode';
 
 const { $api } = useNuxtApp();
 
@@ -122,8 +122,25 @@ const handleVisibilityChange = () => {
 };
 
 onMounted(() => {
-    fetchCartItems();
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        useRouter().push('/login');
+    }
+
+    try {
+        const decoded = jwtDecode(token);
+
+        if (decoded.exp * 1000 < Date.now() || decoded.mfa) {
+            useRouter().push('/login');
+        } else {
+            fetchCartItems();
+            document.addEventListener('visibilitychange', handleVisibilityChange);
+        }
+    } catch {
+        localStorage.removeItem('token');
+        useRouter().push('/login');
+    }
 });
 
 onBeforeUnmount(() => {
