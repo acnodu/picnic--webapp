@@ -25,4 +25,21 @@ const mfaVerify = async (event) => {
     };
 };
 
-export { mfaVerify };
+const mfaGenerate = async (event) => {
+    const body = await readBody(event);
+    const Sessions = new SessionsService(event.context.session);
+
+    const response = await Sessions.sendMFA(body);
+    if (!response) {
+        return sendError(
+            event,
+            createError({ statusCode: 400, statusMessage: 'Failed to send MFA code' })
+        );
+    }
+
+    return {
+        statusMessage: 'MFA code sent successfully',
+    };
+};
+
+export { mfaVerify, mfaGenerate };

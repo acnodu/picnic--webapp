@@ -42,10 +42,13 @@ class Sessions {
         return res.data;
     }
 
-    async sendMFA() {
-        await this._post('/user/2fa/generate', {
-            channel: 'SMS',
-        });
+    async sendMFA(channel) {
+        this.client.defaults.headers.common['picnic-email'] = this.email;
+
+        const response = await this._post('/user/2fa/generate', channel);
+        if (!response) return null;
+
+        return true;
     }
 
     async verifyMFA(otp) {
@@ -115,10 +118,6 @@ class Sessions {
             }
 
             this.sessionId = savedSession._id;
-
-            if (requireMFA) {
-                await this.sendMFA();
-            }
 
             response.data = {
                 sessionId: this.sessionId,
