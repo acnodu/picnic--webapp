@@ -64,7 +64,9 @@ class Sessions {
             }
             return await this.client.post(url, data);
         } catch (error) {
-            if (error.response.status >= 400 && error.response.status < 500) {
+            console.log('-----------');
+            console.log(error);
+            if (error.response?.status >= 400 && error.response?.status < 500) {
                 return null;
             }
 
