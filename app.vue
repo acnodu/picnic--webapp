@@ -16,6 +16,7 @@ useHead({
             content:
                 'Picnic, réduction Picnic, code promo Picnic, -10%, gratuit, panier Picnic, économie, application réduction',
         },
+
         // Open Graph (Facebook, LinkedIn, etc.)
         {
             property: 'og:title',
@@ -38,6 +39,7 @@ useHead({
             property: 'og:url',
             content: 'https://piknik.home.acnodu.fr',
         },
+
         // Twitter Card
         {
             name: 'twitter:card',
@@ -56,6 +58,20 @@ useHead({
             name: 'twitter:image',
             content: '/logo.png',
         },
+
+        // Web App / PWA headers
+        { name: 'theme-color', content: '#fe2d2d' },
+        { name: 'apple-mobile-web-app-capable', content: 'yes' },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
+        { name: 'apple-mobile-web-app-title', content: 'Ragondin' },
+        { name: 'mobile-web-app-capable', content: 'yes' },
+        { name: 'application-name', content: 'Ragondin' },
+        { name: 'msapplication-TileColor', content: '#fe2d2d' },
+        { name: 'msapplication-tap-highlight', content: 'no' },
+    ],
+    link: [
+        { rel: 'apple-touch-icon', href: '/logo.png' },
+        { rel: 'icon', type: 'image/png', href: '/logo.png' },
     ],
 });
 </script>
