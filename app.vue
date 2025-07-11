@@ -60,13 +60,13 @@ useHead({
         },
 
         // Web App / PWA headers
-        { name: 'theme-color', content: '#fe2d2d' },
+        { name: 'theme-color', content: '#f6f6f6' },
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
         { name: 'apple-mobile-web-app-title', content: 'Ragondin' },
         { name: 'mobile-web-app-capable', content: 'yes' },
         { name: 'application-name', content: 'Ragondin' },
-        { name: 'msapplication-TileColor', content: '#fe2d2d' },
+        { name: 'msapplication-TileColor', content: '#f6f6f6' },
         { name: 'msapplication-tap-highlight', content: 'no' },
     ],
     link: [
@@ -75,3 +75,12 @@ useHead({
     ],
 });
 </script>
+
+<style>
+html,
+body {
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+</style>
