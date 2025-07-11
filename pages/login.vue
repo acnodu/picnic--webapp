@@ -54,7 +54,7 @@ definePageMeta({
         },
         {
             property: 'og:title',
-            content: 'Réduction Picnic -10% Gratuit',
+            content: 'Réduction Picnic de -10% gratuitement',
         },
         {
             property: 'og:description',
