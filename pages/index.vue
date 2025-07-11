@@ -34,6 +34,7 @@
             <CoreContainer class="flex-1 p-4">
                 <div class="max-w-4xl mx-auto flex justify-center">
                     <button
+                        :disabled="isLoading || underDiscountApplication"
                         type="button"
                         class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
                         @click="applyDiscount"
@@ -76,7 +77,9 @@ const cartTotalWithoutPromo = computed(() => {
 });
 
 const applyDiscount = async () => {
+    discountApplied.value = 0;
     underDiscountApplication.value = true;
+
     await fetchCartItems();
 
     for (const item of cart.value) {
