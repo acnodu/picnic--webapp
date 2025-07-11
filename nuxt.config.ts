@@ -21,6 +21,7 @@ export default defineNuxtConfig({
         head: {
             title: "Ragondin c'est malin",
             link: [{ rel: 'icon', type: 'image/png', href: '/logo.png' }],
+            viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
         },
     },
 });
