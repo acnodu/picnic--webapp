@@ -1,4 +1,5 @@
-name: Build & Publish Docker Image
+name: Build and Push
+
 on:
   workflow_dispatch:
   push:
@@ -6,42 +7,50 @@ on:
       - "[0-9]+.[0-9]+.[0-9]+"
 
 jobs:
-  deploy:
-    name: Build & Deploy
+  build:
     runs-on: ubuntu-latest
 
-    env:
-      IMG_NAME: ${{ github.event.repository.name }}
-      IMG_VERSION: ${{ github.ref_name }}
-
     steps:
-      - # Checkout the repo
-        name: Checkout
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set environment variables
+        id: set-env
+        run: |
+          REPO_NAME="${{ github.repository }}"
+          REPO_NAME="${REPO_NAME#*/}"
+          if [[ "$REPO_NAME" == *--* ]]; then
+            PART1="${REPO_NAME%%--*}"
+            PART2="${REPO_NAME##*--}"
+            echo "REPO_OWNER=$PART1" >> $GITHUB_ENV
+            echo "IMG_NAME=$PART2" >> $GITHUB_ENV
+          else
+            echo "REPO_OWNER=${{ github.repository_owner }}" >> $GITHUB_ENV
+            echo "IMG_NAME=$REPO_NAME" >> $GITHUB_ENV
+          fi
+
+      - name: Determine version (MAJOR, MINOR, PATCH)
+        id: determine-latest
+        run: |
+          VERSION="${GITHUB_REF#refs/tags/}"
+
+      - name: Print environment variables
+        run: |
+          echo "Repository: ${REPO_OWNER}/${IMG_NAME}:${{github.ref_name}} ${{secrets.REGISTRY_USERNAME}}"
+
       - # Log in to Docker registry
         name: Login to Docker registry
         run: echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login ${{ secrets.REGISTRY_URL }} -u "${{ secrets.REGISTRY_USERNAME }}" --password-stdin
-      - # Overwrite Version File
-        name: Overwrite Compiled Version
-        uses: "DamianReeves/write-file-action@master"
-        with:
-          path: ./src/config/version.json
-          write-mode: overwrite
-          contents: |
-            "${{env.IMG_VERSION}}"
-      - # Set up QEMU
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-      - # Set up Docker Buildx
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-      - # Build and tag Docker image
-        name: Build and tag Docker image
+
+      - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.REGISTRY_URL }}/${{ github.repository_owner }}/${{env.IMG_NAME}}:latest .
-          docker tag ${{ secrets.REGISTRY_URL }}/${{ github.repository_owner }}/${{env.IMG_NAME}}:latest ${{ secrets.REGISTRY_URL }}/${{ github.repository_owner }}/${{env.IMG_NAME}}:${{ env.IMG_VERSION }}
-      - # Push Docker image to Registry
-        name: Push Docker image to Registry
+          docker build --build-arg VERSION=${{github.ref_name}} -t ${{ secrets.REGISTRY_URL }}/${REPO_OWNER}/${IMG_NAME}:${{github.ref_name}} .
+
+      - name: Tag Docker image as latest if applicable
         run: |
-          docker push ${{ secrets.REGISTRY_URL }}/${{ github.repository_owner }}/${{env.IMG_NAME}}:latest
-          docker push ${{ secrets.REGISTRY_URL }}/${{ github.repository_owner }}/${{env.IMG_NAME}}:${{ env.IMG_VERSION }}
+          docker tag ${{ secrets.REGISTRY_URL }}/${REPO_OWNER}/${IMG_NAME}:${{github.ref_name}} ${{ secrets.REGISTRY_URL }}/${REPO_OWNER}/${IMG_NAME}:latest
+
+      - name: Push Docker image
+        run: |
+          docker push ${{ secrets.REGISTRY_URL }}/${REPO_OWNER}/${IMG_NAME}:${{github.ref_name}}
+          docker push ${{ secrets.REGISTRY_URL }}/${REPO_OWNER}/${IMG_NAME}:latest
