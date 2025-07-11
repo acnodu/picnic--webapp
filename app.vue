@@ -28,7 +28,7 @@ useHead({
         },
         {
             property: 'og:image',
-            content: '/assets/images/logo.png',
+            content: '/logo.png',
         },
         {
             property: 'og:type',
@@ -54,7 +54,7 @@ useHead({
         },
         {
             name: 'twitter:image',
-            content: '/assets/images/logo.png',
+            content: '/logo.png',
         },
     ],
 });
