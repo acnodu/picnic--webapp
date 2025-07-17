@@ -1,12 +1,24 @@
 <template>
-    <div>
-        <div class="fixed top-0 left-0 w-full bg-white/70 backdrop-blur-md shadow-xs z-10">
-            <CoreContainer class="flex-1 p-4">
-                <div class="max-w-4xl mx-auto">
-                    <h1 class="text-xl font-bold"><slot /></h1></div
-            ></CoreContainer>
-        </div>
-
-        <div class="h-20"></div>
+    <div
+        v-main-title
+        :class="{ 'text-black': !showTitle, 'text-white': showTitle }"
+        class="mb-6 mt-2 accel-gpu transition-colors"
+    >
+        <h1 class="text-2xl font-bold">{{ title }}</h1>
     </div>
 </template>
+
+<script setup>
+const showTitle = useTitleIsVisible();
+
+const props = defineProps({
+    title: {
+        type: String,
+        default: '',
+    },
+});
+
+onMounted(() => {
+    useTitle().value = props.title;
+});
+</script>
