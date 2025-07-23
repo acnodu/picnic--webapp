@@ -1,7 +1,7 @@
 <template>
     <button
         type="button"
-        class="py-3 px-4 justify-center inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none"
+        class="justify-center inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none"
         :class="classes"
     >
         <span

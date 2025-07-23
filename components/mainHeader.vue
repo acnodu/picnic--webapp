@@ -2,7 +2,7 @@
     <header class="fixed accel-gpu top-0 left-0 w-full z-50 bg-white py-3">
         <CoreContainer class="flex items-center">
             <span class="mr-2 flex items-center text-primary-600">
-                <Menu @click="toggleMenu" />
+                <Menu />
             </span>
 
             <Transition
@@ -22,14 +22,8 @@
 
 <script setup>
 import { Menu } from 'lucide-vue-next';
-const emits = defineEmits(['toggle-menu']);
 const showTitle = useTitleIsVisible();
 const title = useTitle();
-
-const toggleMenu = () => {
-    console.log('ok');
-    emits('toggle-menu');
-};
 </script>
 
 <style scoped>

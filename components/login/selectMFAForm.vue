@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-const { $session } = useNuxtApp();
+const { $api } = useNuxtApp();
 
 const emits = defineEmits(['updateMFAType']);
 
@@ -30,14 +30,13 @@ const sendMFA = async (type) => {
     MFAType.value = type;
     isLoading.value = true;
 
-    await $session
-        .sendMFA(type)
+    await $api
+        .post('/mfa/generate', { type })
         .then(() => {
             emits('updateMFAType', type);
         })
         .catch((error) => {
             console.error("Erreur lors de l'envoi du MFA:", error);
-            // Gérer l'erreur, par exemple en affichant un message à l'utilisateur
         })
         .finally(() => {
             isLoading.value = false;

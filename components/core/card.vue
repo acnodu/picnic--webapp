@@ -1,8 +1,8 @@
 <template>
-    <div class="bg-[#f4f4f4] p-4 rounded-2xl mb-4">
+    <div class="bg-[#f4f4f4] p-4 pt-3 rounded-2xl">
         <div
             v-if="title"
-            class="flex items-center mb-3 text-black"
+            class="flex items-center mb-2 text-black"
         >
             <span
                 v-if="icon"

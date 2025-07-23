@@ -1,26 +1,24 @@
 export default defineNuxtRouteMiddleware((to) => {
-    const token = useCookie('picnic-auth');
+    if (process.server) return;
 
-    if (token.value === '' && to.path === '/login') {
+    const token = localStorage.getItem('token') || '';
+
+    if (!token && to.path === '/login') {
         return;
     }
 
-    if (!token.value && to.path !== '/login') {
+    if (!token && to.path !== '/login') {
         return navigateTo('/login');
     }
 
     try {
-        const decodedToken = token.value ? JSON.parse(atob(token.value.split('.')[1])) : null;
+        const decodedToken = token ? JSON.parse(atob(token.split('.')[1])) : null;
 
-        if (decodedToken['pc:2fa'] === 'NOT_VERIFIED' && to.path !== '/login') {
-            return navigateTo('/login');
-        }
-
-        if (decodedToken['pc:2fa'] === 'VERIFIED' && to.path === '/login') {
+        if (decodedToken.userId && to.path === '/login') {
             return navigateTo('/');
         }
     } catch {
-        token.value = '';
+        localStorage.removeItem('token');
         return navigateTo('/login');
     }
 });

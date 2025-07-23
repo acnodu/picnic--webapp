@@ -13,7 +13,7 @@
 <script setup>
 import { ref, watch } from 'vue';
 
-const { $session } = useNuxtApp();
+const { $api } = useNuxtApp();
 
 const emits = defineEmits(['MFAisValid']);
 
@@ -23,10 +23,11 @@ const isLoading = ref(false);
 const submitCode = async () => {
     isLoading.value = true;
 
-    await $session
-        .validateMFA(code.value)
+    await $api
+        .post('/mfa/verify', { code: code.value })
         .then(() => {
-            emits('MFAisValid', false);
+            console.log('ok');
+            emits('MFAisValid', true);
         })
         .finally(() => {
             isLoading.value = false;

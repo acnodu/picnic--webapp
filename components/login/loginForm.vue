@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-const { $session } = useNuxtApp();
+const { $api } = useNuxtApp();
 
 const emits = defineEmits(['updateMFA']);
 
@@ -40,10 +40,13 @@ const password = ref('Eqgn-_6opVgXbufP*GoQG_@ZXmqMCvij3g8');
 
 const handleLogin = async () => {
     isLoading.value = true;
-    await $session
-        .create({ mail: mail.value, password: password.value })
+    await $api
+        .post('/login', {
+            email: mail.value,
+            password: password.value,
+        })
         .then((data) => {
-            emits('updateMFA', data.second_factor_authentication_required);
+            emits('updateMFA', data.requireMFA);
         })
         .finally(() => {
             isLoading.value = false;
