@@ -16,6 +16,8 @@ COPY --from=build /app/package*.json ./
 
 RUN npm install --production
 
+ENV ENV=prod
+
 EXPOSE 3000
 
 CMD ["node", ".output/server/index.mjs"]

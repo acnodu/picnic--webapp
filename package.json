@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "ragondin",
   "private": true,
   "type": "module",
   "scripts": {
@@ -22,6 +22,7 @@
     "jwt-decode": "^4.0.0",
     "md5": "^2.3.0",
     "mongoose": "^8.16.0",
+    "node-vault": "^0.10.9",
     "nuxt": "^3.17.5",
     "preline": "^3.1.0",
     "tailwindcss": "^4.1.10",
