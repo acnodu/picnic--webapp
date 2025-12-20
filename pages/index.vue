@@ -2,19 +2,19 @@
     <div>
         <MainTitle title="Accueil" />
 
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-3 sm:gap-4">
             <HomeShareReferralCard
                 v-if="userStore.infos.referral && !userStore.infos.referral?.referredBy"
             />
 
             <HomeAddReferralCard />
 
-            <div class="flex flex-row gap-4 h-full">
+            <div class="flex flex-row gap-3 sm:gap-4 h-full">
                 <div class="w-1/2 h-full aspect-square">
                     <HomeCartResumeCard :cart="cartStore.items" />
                 </div>
 
-                <div class="w-1/2 h-full flex flex-col gap-4 aspect-square">
+                <div class="w-1/2 h-full flex flex-col gap-3 sm:gap-4 aspect-square">
                     <div class="flex-1">
                         <CoreCard
                             title="Vos crédits"

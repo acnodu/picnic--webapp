@@ -33,14 +33,11 @@
         </div>
 
         <div
-            class="flex-1 flex flex-col justify-end w-full px-0"
+            class="flex-1 flex flex-col justify-center text-center w-full px-0"
             v-else
         >
-            <span class="text-gray-400 text-sm"
-                >Votre panier est vide.<br />
-                Allez sur l'application picnic, faites vos courses puis revenez ici pour appliquer
-                la réduction avant de choisir votre créneau de livraison.</span
-            >
+            <span class="font-semibold text-gray-600">Oops...</span>
+            <span class="text-gray-400 text-sm">Votre panier picnic est vide.</span>
         </div>
     </CoreCard>
 </template>

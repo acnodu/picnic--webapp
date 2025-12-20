@@ -2,18 +2,18 @@
     <CoreCard class="relative overflow-hidden">
         <div class="flex flex-row justify-between items-center">
             <div class="w-4/5">
-                <h2 class="text-md font-semibold mb-1">
+                <h6 class="text-xs sm:text-sm font-semibold mb-1">
                     Tous les mois, nous vous offrons un crédit supplémentaire !
-                </h2>
+                </h6>
                 <div class="text-xs text-gray-500 -mb-1">
                     Vous ne pouvez pas avoir + de 3 crédits offerts.
                 </div>
             </div>
         </div>
         <Gift
-            :size="80"
+            :size="60"
             :stroke-width="2"
-            class="absolute -bottom-2 -right-1 text-[#A17F6A]/20 animate-shake -rotate-10"
+            class="absolute bottom-1 right-1 text-[#A17F6A]/20 animate-shake -rotate-10"
         />
     </CoreCard>
 </template>

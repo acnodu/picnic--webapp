@@ -20,7 +20,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     api.interceptors.response.use(
         (response) => {
             if (response.headers.token) {
-                const token = response.headers.authorization;
+                const token = response.headers.token;
                 localStorage.setItem('token', token);
             }
 

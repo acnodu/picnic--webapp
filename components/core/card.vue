@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-[#f4f4f4] p-4 pt-3 rounded-2xl">
+    <div class="bg-[#f4f4f4] p-3 sm:p-4 sm:pt-3 rounded-2xl">
         <div
             v-if="title"
             class="flex items-center mb-2 text-black"
@@ -14,7 +14,7 @@
                 />
             </span>
 
-            <h2 class="font-semibold text-md">{{ title }}</h2>
+            <h2 class="font-semibold text-sm sm:text-md">{{ title }}</h2>
         </div>
 
         <slot />

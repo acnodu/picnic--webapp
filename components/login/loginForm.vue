@@ -46,6 +46,10 @@ const handleLogin = async () => {
             password: password.value,
         })
         .then((data) => {
+            if (!data.requireMFA) {
+                return useRouter().push('/');
+            }
+
             emits('updateMFA', data.requireMFA);
         })
         .finally(() => {
