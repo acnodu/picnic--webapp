@@ -93,9 +93,8 @@ const applyDiscount = async () => {
             productId: item.id,
             quantity: item.quantity,
         });
-
-        await new Promise((resolve) => setTimeout(resolve, 850));
     }
+
     await fetchCartItems();
 
     cart.value = cart.value.reverse();

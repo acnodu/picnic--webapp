@@ -8,12 +8,12 @@ const getCart = async (event) => {
 };
 
 const discountItem = async (event) => {
-    const { productId, quantity } = await readBody(event);
+    const { productId } = await readBody(event);
 
     const Picnic = new PicnicService(event.context.session);
-    await Picnic.removeFromCart(productId, quantity);
+    await Picnic.removeFromCart(productId);
 
-    const newCart = await Picnic.addToCart(productId, quantity, true);
+    const newCart = await Picnic.addToCart(productId, true);
 
     return formateCartItems(newCart);
 };
