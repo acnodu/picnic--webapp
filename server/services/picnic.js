@@ -10,7 +10,7 @@ class Picnic {
 
         this.client = axios.create({
             baseURL: 'https://storefront-prod.fr.picnicinternational.com/api/15',
-            timeout: 10000,
+            timeout: 25000,
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
