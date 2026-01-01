@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="min-h-screen flex flex-col pb-bottom-safe-area">
-            <MainTitle>Mon panier</MainTitle>
+            <MainTitle>Mon panier </MainTitle>
 
             <CartCard
                 :cart="cart"
