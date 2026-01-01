@@ -7,7 +7,7 @@ export default defineNitroPlugin(async () => {
 
         await mongoose.connect(
             `mongodb://${config.mongoUser}:${config.mongoPass}@${config.mongoHost}/${config.mongoUser}
-            }?replicaSet=replicaset&authSource=admin`
+            }?authSource=admin`
         );
     }
 });
