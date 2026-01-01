@@ -1,33 +1,34 @@
 {
-  "name": "ragondin",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "dependencies": {
-    "@nuxt/eslint": "^1.4.1",
-    "@nuxtjs/color-mode": "^3.5.2",
-    "@nuxtjs/tailwindcss": "^7.0.0-beta.0",
-    "@preline/pin-input": "^3.1.0",
-    "@tailwindcss/vite": "^4.1.10",
-    "axios": "^1.10.0",
-    "axios-retry": "^4.5.0",
-    "eslint": "^9.29.0",
-    "jsonwebtoken": "^9.0.2",
-    "jwt-decode": "^4.0.0",
-    "md5": "^2.3.0",
-    "mongoose": "^8.16.0",
-    "node-vault": "^0.10.9",
-    "nuxt": "^3.17.5",
-    "preline": "^3.1.0",
-    "tailwindcss": "^4.1.10",
-    "uuid-random": "^1.3.2",
-    "vue": "^3.5.17",
-    "vue-router": "^4.5.1"
-  }
+    "name": "ragondin",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "start": "node .output/server/index.mjs",
+        "build": "nuxt build",
+        "dev": "nuxt dev",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare"
+    },
+    "dependencies": {
+        "@nuxt/eslint": "^1.4.1",
+        "@nuxtjs/color-mode": "^3.5.2",
+        "@nuxtjs/tailwindcss": "^7.0.0-beta.0",
+        "@preline/pin-input": "^3.1.0",
+        "@tailwindcss/vite": "^4.1.10",
+        "axios": "^1.10.0",
+        "axios-retry": "^4.5.0",
+        "eslint": "^9.29.0",
+        "jsonwebtoken": "^9.0.2",
+        "jwt-decode": "^4.0.0",
+        "md5": "^2.3.0",
+        "mongoose": "^8.16.0",
+        "node-vault": "^0.10.9",
+        "nuxt": "^3.17.5",
+        "preline": "^3.1.0",
+        "tailwindcss": "^4.1.10",
+        "uuid-random": "^1.3.2",
+        "vue": "^3.5.17",
+        "vue-router": "^4.5.1"
+    }
 }
