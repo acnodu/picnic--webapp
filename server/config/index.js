@@ -2,7 +2,7 @@ import vaultFn from 'node-vault';
 
 const vault = vaultFn({
     apiVersion: 'v1',
-    endpoint: 'http://vault.priv.acnodu.fr',
+    endpoint: 'http://192.168.23.49:8200',
 });
 
 // eslint-disable-next-line import/no-mutable-exports
