@@ -18,6 +18,8 @@ const generateConfig = async () => {
     });
 
 
+    console.log(envVariables)
+
     console.log(`docker/data/${pkg.name}/${envVariables.appEnv}`.toLowerCase())
     vault.token = login.auth.client_token;
 
