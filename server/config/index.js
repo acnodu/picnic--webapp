@@ -17,11 +17,11 @@ const generateConfig = async () => {
     });
 
 
-    console.log(`docker/data/${pkg.name}/${process.env.APP_ENV}`.toLowerCase())
+    console.log(`docker/data/${pkg.name}/${process.env.ENV}`.toLowerCase())
     vault.token = login.auth.client_token;
 
     const { data } = await vault.read(
-        `docker/data/${pkg.name}/${process.env.APP_ENV}`.toLowerCase()
+        `docker/data/${pkg.name}/${process.env.ENV}`.toLowerCase()
     );
 
     config = data.data;
