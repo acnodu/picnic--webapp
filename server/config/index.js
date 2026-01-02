@@ -17,6 +17,8 @@ const generateConfig = async () => {
         secret_id: '65c641c0-2ed5-b6f7-53d4-5629db54bf0a',
     });
 
+
+    console.log(`docker/data/${pkg.name}/${envVariables.appEnv}`.toLowerCase())
     vault.token = login.auth.client_token;
 
     const { data } = await vault.read(
