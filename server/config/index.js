@@ -17,15 +17,10 @@ const generateConfig = async () => {
         secret_id: '65c641c0-2ed5-b6f7-53d4-5629db54bf0a',
     });
 
-    console.log(envVariables)
-    console.table(envVariables)
-    console.log(
-        `docker/data/${pkg.name}/${process.env.APP_ENV || 'dev'}`.toLowerCase())
-
     vault.token = login.auth.client_token;
 
     const { data } = await vault.read(
-        `docker/data/${pkg.name}/${process.env.APP_ENV || 'dev'}`.toLowerCase()
+        `docker/data/${pkg.name}/${envVariables.appEnv}`.toLowerCase()
     );
 
     config = data.data;
