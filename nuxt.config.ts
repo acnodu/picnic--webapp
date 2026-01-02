@@ -13,8 +13,8 @@ export default defineNuxtConfig({
     css: ['@/assets/css/custom.css'],
     runtimeConfig: {
         public: {
-            apiUrl: '/api',
-            appEnv: 'dev',
+            apiUrl: process.env.NUXT_API_URL || '/api',
+            appEnv: process.env.NUXT_APP_ENV || 'dev',
         },
     },
     app: {
