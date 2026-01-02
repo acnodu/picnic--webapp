@@ -10,12 +10,15 @@ let config = {};
 
 const generateConfig = async () => {
     const { default: pkg } = await import('./../../package.json', { with: { type: 'json' } });
+    const envVariables = useRuntimeConfig();
 
     const login = await vault.approleLogin({
         role_id: '8dc52e67-feab-5e6d-903b-33fcd4e28671',
         secret_id: '65c641c0-2ed5-b6f7-53d4-5629db54bf0a',
     });
 
+    console.log(envVariables)
+    console.table(envVariables)
     console.log(
         `docker/data/${pkg.name}/${process.env.APP_ENV || 'dev'}`.toLowerCase())
 
