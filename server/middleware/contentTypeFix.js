@@ -4,6 +4,7 @@ export default defineEventHandler((event) => {
         const pathname = url.split('?')[0];
 
         if (!pathname.startsWith('/_nuxt')) return;
+        console.log('Content-Type fix middleware applied for', pathname);
 
         const extMatch = pathname.match(/\.([a-z0-9]+)$/i);
         if (!extMatch) return;
