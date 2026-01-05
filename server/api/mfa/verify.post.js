@@ -14,7 +14,6 @@ export default defineEventHandler(async (event) => {
             createError({ statusCode: 400, statusMessage: 'Invalid input data' })
         );
     }
-    console.log('ok')
 
     return await mfaVerify(event);
 });
