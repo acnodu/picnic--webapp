@@ -4,9 +4,9 @@
     "type": "module",
     "scripts": {
         "start": "node .output/server/index.mjs",
-        "build": "nuxt build",
+        "build": "GIT_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo 'dev') nuxt build",
+        "generate": "GIT_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo 'dev') nuxt generate",
         "dev": "nuxt dev",
-        "generate": "nuxt generate",
         "preview": "nuxt preview",
         "postinstall": "nuxt prepare"
     },
