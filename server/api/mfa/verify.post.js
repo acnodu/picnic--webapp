@@ -5,7 +5,6 @@ import MFAVerifySchema from '../../validation/mfaVerifySchema.js';
 export default defineEventHandler(async (event) => {
     await isValidSession(event, true);
 
-    
     const body = await readBody(event);
     const { error } = MFAVerifySchema.safeParse(body);
 
