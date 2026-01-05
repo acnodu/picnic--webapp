@@ -15,6 +15,7 @@ export default defineNuxtConfig({
         public: {
             apiUrl: process.env.NUXT_API_URL || '/api',
             appEnv: process.env.NUXT_APP_ENV || 'dev',
+            appVersion: process.env.GIT_TAG || 'dev',
         },
     },
     app: {
