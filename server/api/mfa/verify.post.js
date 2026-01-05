@@ -15,7 +15,8 @@ export default defineEventHandler(async (event) => {
         );
     }
 
-    console.log('okkdfefefdfdkk')
+    console.log('je pete')
+    
 
     return await mfaVerify(event);
 });
