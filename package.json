@@ -29,6 +29,7 @@
         "tailwindcss": "^4.1.18",
         "uuid-random": "^1.3.2",
         "vue": "^3.5.26",
-        "vue-router": "^4.6.4"
+        "vue-router": "^4.6.4",
+        "zod": "^4.3.6"
     }
 }

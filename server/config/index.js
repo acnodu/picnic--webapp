@@ -1,4 +1,8 @@
-require('dotenv').config();
+// import dotenv
+import dotenv from 'dotenv';
+
+// load .env file
+dotenv.config();
 
 const config = {
     mongoHost: process.env.MONGO_HOST,
